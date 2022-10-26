@@ -1,0 +1,66 @@
+﻿@model IEnumerable<AssignmentManagementSystem.Models.TeamAssignment>
+    @{
+    ViewData["Title"] = "Index";
+    }
+    @if (ViewBag.msg != "")
+{
+    <script>alert("@ViewBag.msg");</script>
+}
+
+
+    <h1>Tasks</h1>
+
+        <table class="table table table-striped table-light">
+            <tr>
+                @*<th>Task ID</th>*@
+                <th>Team Assignment ID</th>
+                <th>Assignment ID</th>
+                <th>Member 1</th>
+                <th>Member 2</th>
+                <th>Member 3</th>
+                <th>Member 4</th>
+                <th>Action</th>
+            </tr>
+            @foreach (var singledatarow in Model)
+            {
+        <tr>
+            @*<td>@singledatarow.TaskId</td>*@
+            <td>@singledatarow.TeamAssignmentId</td>
+            <td>@singledatarow.AssignmentId</td>
+            @if (singledatarow.TeammateOne!= null)
+            {
+                <td>@singledatarow.TeammateOne.firstName</td>
+            }
+            else
+            {
+                <td>None</td>
+            }
+            @if (singledatarow.TeammateTwo!= null)
+            {
+                <td>@singledatarow.TeammateTwo.firstName</td>
+            }
+            else
+            {
+                <td>None</td>
+            }
+            @if (singledatarow.TeammateThree!= null)
+            {
+                <td>@singledatarow.TeammateThree.firstName</td>
+            }
+            else
+            {
+                <td>None</td>
+            }@if (singledatarow.TeammateFour!= null)
+            {
+                <td>@singledatarow.TeammateFour.firstName</td>
+            }
+            else
+            {
+                <td>None</td>
+            }
+            <td>
+                <a class="btn btn-success" asp-action="AddTask" asp-route-taid="@singledatarow.TeamAssignmentId" asp-route-aid ="@singledatarow.AssignmentId">Add Task</a>
+            </td>
+        </tr>
+            }
+        </table>

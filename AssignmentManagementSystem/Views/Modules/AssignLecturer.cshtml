@@ -1,0 +1,50 @@
+﻿@model AssignmentManagementSystem.Models.AssignLecturerModel
+
+    @{
+        ViewData["Title"] = "AssignLecturer";
+    }
+
+    <h1>Assign Lecturer</h1>
+
+    <h4>Module</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="AssignLecturer" asp-controller="LecturerModules" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="module.ModuleId" readonly/>
+                <div class="form-group">
+                    <label asp-for="module.ModuleId" class="control-label"></label>
+                    <input id="ModuleId" name="ModuleId" asp-for="module.ModuleId" class="form-control" readonly/>
+                    <span asp-validation-for="module.ModuleId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="module.ModuleName" class="control-label"></label>
+                    <input asp-for="module.ModuleName" class="form-control" readonly/>
+                    <span asp-validation-for="module.ModuleName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label>Lecturer</label><br />
+                    <select id="UserId" name="UserId" class="form-control" asp-validation-for="@Model.lecturers">
+                        @foreach (var singledatarow in Model.lecturers)
+                        {
+                            <option value="@singledatarow.Id">@singledatarow.lastName @singledatarow.firstName</option>
+                        }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a asp-action="Index"><button class="btn btn-primary">Back to List</button></a>
+    </div>
+
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }
+
+

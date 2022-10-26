@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewData["Title"] = "AddModule";
+}
+
+
+<center>
+    <h1>Add Module Page</h1>
+    <br />
+    <form asp-action="AddModule" method="post">
+        <table>
+            <tr>
+                <th>Module ID</th>
+                <td><input type="text" name="ModuleId" placeholder="e.g. M10001" required /></td>
+            </tr>
+            <tr>
+                <th>Module Name</th>
+                <td><input type="text" name="ModuleName" placeholder="Mobile Application Development" required /></td>
+            </tr>
+
+            <tr>
+                <td colspan="2" style="text-align:center">
+                    <input type="submit" name="submit" value="Add New Module" />
+                </td>
+            </tr>
+
+        </table>
+    </form>
+</center>

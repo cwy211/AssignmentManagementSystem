@@ -1,0 +1,77 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using AssignmentManagementSystem.Areas.Identity.Data
+
+@inject SignInManager<AssignmentManagementSystemUser> SignInManager
+@inject UserManager<AssignmentManagementSystemUser> UserManager
+
+<ul class="navbar-nav">
+    @if (SignInManager.IsSignedIn(User))
+    {
+        if (this.User.IsInRole("Admin"))
+        {
+            <li class="nav-item">
+                <a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" id="register" asp-area="Identity" asp-page="/Account/Register">Register</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" id="module" asp-area="" asp-controller="Modules" asp-action="Index">Modules</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" id="lecturerModules" asp-area="" asp-controller="LecturerModules" asp-action="Index">Lecturer Module</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" id="sendEmail" asp-area="" asp-controller="Emails" asp-action="Index">Send Email</a>
+            </li>
+            <li class="nav navbar-nav navbar-right">
+                <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                    <button id="logout" type="submit" class="nav-link btn btn-danger text-white">Logout</button>
+                </form>
+            </li>
+        }
+        if (this.User.IsInRole("Lecturer"))
+        {
+            <li class="nav-item">
+                <a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" id="assignment" asp-area="" asp-controller="Assignments" asp-action="Index">Assignments</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" id="markAssignment" asp-area="" asp-controller="MarkAssignments" asp-action="Index">Mark Assignment</a>
+            </li>
+            <li class="nav navbar-nav navbar-right">
+                <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                    <button id="logout" type="submit" class="nav-link btn btn-danger text-white">Logout</button>
+                </form>
+            </li>
+        }
+        if (this.User.IsInRole("Student"))
+        {
+            <li class="nav-item">
+                <a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" id="task" asp-area="" asp-controller="Tasks" asp-action="Index">Task</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" id="teamAssignment" asp-area="" asp-controller="TeamAssignments" asp-action="Index">Team Assignment</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" id="enrollTeam" asp-area="" asp-controller="EnrollTeams" asp-action="Index">Enroll Team</a>
+            </li>
+            <li class="nav-item">
+                <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                    <button id="logout" type="submit" class="nav-link btn btn-danger text-white">Logout</button>
+                </form>
+            </li>
+        }
+    }
+    else
+    {
+        <li class="nav-item">
+            <a class="nav-link  btn btn-success text-white" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
+        </li>
+    }
+</ul>

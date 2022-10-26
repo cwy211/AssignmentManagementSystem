@@ -1,0 +1,55 @@
+﻿@model List<AssignmentManagementSystem.Models.Module>
+@{
+    ViewData["Title"] = "AddAssignment";
+}
+
+
+<center>
+    <h1>Create Assignment Page</h1>
+    <br />
+    <form asp-action="AddAssignment" method="post">
+        <table>
+            <tr>
+                <th>Assignment ID</th>
+                <td><input class="form-control m-2" type="text" name="AssignmentId" placeholder="e.g. A00001" required /></td>
+            </tr>
+            <tr>
+                <th>Assignment Name</th>
+                <td><input class="form-control m-2" type="text" name="AssignmentName" placeholder="Mobile Application Development Group Assignment" required /></td>
+            </tr>
+            <tr>
+                <th>Handout Date</th>
+                <td><input class="form-control m-2" type="date" name="HandoutDate" required /></td>
+            </tr>
+            <tr>
+                <th>Submission Date</th>
+                <td><input class="form-control m-2" type="date" name="SubmissionDate" required /></td>
+            </tr>
+            <tr>
+                <th>Module</th>
+                <td>
+                    <select class="form-control m-2" id="ModuleRefId" name="ModuleRefId">
+                        @foreach (var singledatarow in Model)
+                        {
+                            @if (singledatarow != null)
+                            {
+                                <option value="@singledatarow.ModuleId">@singledatarow.ModuleName</option>
+                            }
+                            else
+                            {
+
+                            }
+
+                        }
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align:center">
+                    <input class="form-control m-2" type="submit" name="submit" value="Create New Assignment" />
+                </td>
+            </tr>
+        </table>
+    </form>
+</center>
+

@@ -1,0 +1,68 @@
+﻿@model IEnumerable<AssignmentManagementSystem.Models.TeamAssignment>
+
+@{
+    ViewData["Title"] = "ViewTeams";
+}
+
+<h1>Teams</h1>
+
+<table class="table table-striped table-light">
+    <tr style="font-size:x-small;">
+        <th>Team Assignment ID</th>
+        <th>Assignment ID</th>
+        <th>Submitted File</th>
+        <th>Submission Status</th>
+        <th>Mark</th>
+        <th>Team Mate 1</th>
+        <th>Team Mate 2</th>
+        <th>Team Mate 3</th>
+        <th>Team Mate 4</th>
+        <th>Action</th>
+    </tr>
+    @foreach (var singledatarow in Model)
+    {
+<tr>
+    <td>@singledatarow.TeamAssignmentId</td>
+    <td>@singledatarow.AssignmentId</td>
+    <td>@singledatarow.s3Location</td>
+    <td>@singledatarow.submitStatus</td>
+    <td>@singledatarow.mark</td>
+    @if (singledatarow.TeammateOne != null)
+    {
+        <td>@singledatarow.TeammateOne.firstName</td>
+    }
+    else
+    {
+        <td>None</td>
+    }
+    @if (singledatarow.TeammateTwo != null)
+    {
+        <td>@singledatarow.TeammateTwo.firstName</td>
+    }
+    else
+    {
+        <td>None</td>
+    }
+    @if (singledatarow.TeammateThree != null)
+    {
+        <td>@singledatarow.TeammateThree.firstName</td>
+    }
+    else
+    {
+        <td>None</td>
+    }@if (singledatarow.TeammateFour != null)
+    {
+        <td>@singledatarow.TeammateFour.firstName</td>
+    }
+    else
+    {
+        <td>None</td>
+    }
+    <td>
+        <a class="btn btn-success" asp-action="JoinTeam" asp-controller="EnrollTeams" asp-route-id="@singledatarow.TeamAssignmentId">Enroll</a>
+    </td>
+</tr>
+    }
+
+</table>
+

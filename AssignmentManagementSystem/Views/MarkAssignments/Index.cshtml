@@ -1,0 +1,79 @@
+﻿@model IEnumerable<AssignmentManagementSystem.Models.TeamAssignment>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+@if (ViewBag.msg != "")
+{
+    <script>alert("@ViewBag.msg");</script>
+}
+
+<h1>Assignments</h1>
+
+<table class="table table table-striped table-light">
+    <tr style="font-size:x-small;">
+        <th>Team Assignment ID</th>
+        <th>Assignment ID</th>
+        <th>Submitted File</th>
+        <th>Submission Status</th>
+        <th>Mark</th>
+        <th>Team Mate 1</th>
+        <th>Team Mate 2</th>
+        <th>Team Mate 3</th>
+        <th>Team Mate 4</th>
+        <th>Action</th>
+    </tr>
+    @foreach (var singledatarow in Model)
+    {
+<tr>
+    <td>@singledatarow.TeamAssignmentId</td>
+    <td>@singledatarow.AssignmentId</td>
+    <td>@singledatarow.s3Location</td>
+    <td>@singledatarow.submitStatus</td>
+    <td>@singledatarow.mark</td>
+    @if (singledatarow.TeammateOne != null)
+    {
+        <td>@singledatarow.TeammateOne.lastName @singledatarow.TeammateOne.firstName</td>
+    }
+    else
+    {
+        <td>None</td>
+    }
+    @if (singledatarow.TeammateTwo != null)
+    {
+        <td>@singledatarow.TeammateTwo.lastName @singledatarow.TeammateTwo.firstName</td>
+    }
+    else
+    {
+        <td>None</td>
+    }
+    @if (singledatarow.TeammateThree != null)
+    {
+        <td>@singledatarow.TeammateThree.lastName @singledatarow.TeammateThree.firstName</td>
+    }
+    else
+    {
+        <td>None</td>
+    }@if (singledatarow.TeammateFour != null)
+    {
+        <td>@singledatarow.TeammateFour.lastName @singledatarow.TeammateFour.firstName</td>
+    }
+    else
+    {
+        <td>None</td>
+    }
+<td>
+    <a class="btn btn-success m-1" asp-action="Mark" asp-route-id="@singledatarow.TeamAssignmentId">Mark</a> 
+    @if (singledatarow.s3Location != null)
+    {
+
+        <a class="btn btn-danger m-1" asp-action="downloadAssignment" asp-route-filename="@singledatarow.s3Location">Download</a>
+
+    }
+
+</td>
+</tr>
+    }
+
+</table>

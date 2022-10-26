@@ -1,0 +1,62 @@
+﻿@model IEnumerable<AssignmentManagementSystem.Areas.Identity.Data.AssignmentManagementSystemUser>
+
+    @{
+        ViewData["Title"] = "CreateTask";
+       
+    }
+
+
+<center>
+    <h1>Create Task Page</h1>
+    <br />
+    <form asp-action="CreateTask" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <table>
+            <tr>
+                <th>Team Assignment ID</th>
+                <td><input class="form-control m-2" type="text" name="TeamAssignmentId" value="@ViewBag.taid" readonly /></td>
+            </tr>
+            <tr>
+                <th>Assignment ID</th>
+                <td><input class="form-control m-2" type="text" name="AssignmentId" value="@ViewBag.aid" readonly /></td>
+            </tr>
+            <tr>
+                <th>Submission Date</th>
+                <td><input class="form-control m-2" type="date" name="SubmissionDate" required /></td>
+            </tr>
+            <tr>
+                <th>Submit Status</th>
+                <td><input class="form-control m-2" type="text" name="SubmitStatus" value="Not Submitted" readonly /></td>
+            </tr>
+            <tr>
+                <th>Users</th>
+                <td>
+                    <select class="form-control m-2" id="UserId" name="UserId" required>
+                        @foreach (var singledatarow in Model)
+                        {
+                            @if (singledatarow != null)
+                            {
+                                <option value="@singledatarow.Id">@singledatarow.lastName @singledatarow.firstName</option>
+                            }
+                            else
+                            {
+
+                            }
+
+                        }
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align:center">
+                    <input class="form-control m-2" type="submit" name="submit" value="Create New Task" />
+                </td>
+            </tr>
+        </table>
+        
+    </form>
+    <div>
+        <a asp-action="Index"><button class="btn btn-primary">Back to List</button></a>
+    </div>
+</center>
+

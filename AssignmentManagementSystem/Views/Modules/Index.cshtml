@@ -1,0 +1,30 @@
+﻿@model IEnumerable<AssignmentManagementSystem.Models.Module>
+@{
+    ViewData["Title"] = "Index";
+}
+
+@if (ViewBag.msg != "")
+{
+    <script>alert("@ViewBag.msg");</script>
+}
+<h1>Modules</h1>
+
+<p><a asp-controller="Modules" asp-action="AddModule"><button class="btn btn-primary">Add Module</button></a></p>
+
+
+<table class="table table table-striped table-light" style="background-color:white;">
+    <tr>
+        <th>Module ID</th>
+        <th>Module Name</th>
+        <th>Action</th>
+    </tr>
+    @foreach (var singledatarow in Model)
+    {
+        <tr>
+            <td>@singledatarow.ModuleId</td>
+            <td>@singledatarow.ModuleName</td>
+            <td><a asp-action="AssignLecturer" asp-route-id="@singledatarow.ModuleId"><button class="btn btn-success">Edit</button></a></td>
+        </tr>
+    }
+
+</table>

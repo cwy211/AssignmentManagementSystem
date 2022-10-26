@@ -1,0 +1,19 @@
+﻿
+
+@{
+    ViewData["Title"] = "UploadAssignment";
+}
+
+
+<center>
+    <h1>Upload Assignment</h1>
+    <br />
+    <form asp-action="uploadAssignment" asp-controller="TeamAssignments" method="post" enctype="multipart/form-data">
+        <label>Upload assignment from here:</label>
+        <input type="file" name="file" accept="application/pdf" />
+        <br />
+        <br />
+        <input type="text" name="id" value="@ViewBag.teamAssignmentId" hidden/>
+        <input type="submit" value="Submit Assignment" />
+    </form>
+</center>

@@ -1,0 +1,39 @@
+﻿@model IEnumerable<AssignmentManagementSystem.Models.Task>
+@{
+    ViewData["Title"] = "AddTask";
+}
+
+
+<h1>Assigned Task</h1>
+<p><a class="btn btn-primary" asp-controller="Tasks" asp-action="CreateTask" asp-route-taid="@ViewBag.taid" asp-route-aid="@ViewBag.aid">Create Task</a></p>
+
+
+<table style="width:100%" class="table table table-striped table-light">
+    <tr>
+        <th>Task Id</th>
+        <th>Task Name</th>
+        <th>Team Assignment ID</th>
+        <th>Assignment ID</th>
+        <th>User Name</th>
+        <th>Submission Date</th>
+        <th>Submit Status</th>
+        <th style="width:25%">Action</th>
+    </tr>
+    @foreach (var singledatarow in Model)
+    {
+        <tr>
+            <td>@singledatarow.TaskId</td>
+            <td>@singledatarow.TaskName</td>
+            <td>@singledatarow.TeamAssignment.TeamAssignmentId</td>
+            <td>@singledatarow.AssignmentId</td>
+            <td>@singledatarow.Users.firstName</td>
+            <td>@singledatarow.SubmissionDate</td>
+            <td>@singledatarow.SubmitStatus</td>
+            <td>
+                <a class="btn btn-primary m-1 p-2" asp-action="Edit" asp-route-id="@singledatarow.TaskId" asp-route-name="@singledatarow.Users.firstName" >Edit</a>
+                <a class="btn btn-success m-1 p-2" asp-action="Details" asp-route-id="@singledatarow.TaskId">Details</a>
+                <a class="btn btn-danger m-1 p-2" asp-action="Delete" asp-route-id="@singledatarow.TaskId">Delete</a>
+            </td>
+        </tr>
+    }
+</table>

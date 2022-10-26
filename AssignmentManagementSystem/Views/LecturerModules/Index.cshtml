@@ -1,0 +1,21 @@
+﻿@model IEnumerable<AssignmentManagementSystem.Models.LecturerModule>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Modules</h1>
+
+<table class="table table table-striped table-light" style="background-color:white;">
+    <tr>
+        <th>Lecturer Name</th>
+        <th>Module Name</th>
+    </tr>
+    @foreach (var singledatarow in Model)
+    {
+        <tr>
+            <td>@singledatarow.Users.lastName</td>
+            <td>@singledatarow.Module.ModuleName</td>
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,71 @@
+﻿@model AssignmentManagementSystem.Models.TeamAssignment
+@{
+    ViewData["Title"] = "Mark";
+}
+
+<h1>Mark Team Assignment</h1>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="TeamAssignmentId" />
+            <div class="form-group">
+                <label class="control-label">Team Assignment ID</label>
+                <input asp-for="TeamAssignmentId" class="form-control" readonly />
+                <span asp-validation-for="TeamAssignmentId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Assignment ID</label>
+                <input asp-for="AssignmentId" class="form-control" readonly />
+                <span asp-validation-for="AssignmentId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Submitted File</label>
+                <input asp-for="s3Location" class="form-control" readonly />
+                <span asp-validation-for="s3Location" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label" hidden>Submit Status</label>
+                <input value="No" class="form-control" hidden />
+                <span asp-validation-for="submitStatus" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Mark</label>
+                <input asp-for="mark" class="form-control" type="number" required min="0" max="100"/>
+                <span asp-validation-for="mark" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label">Teammate 1</label>
+                <input asp-for="TeammateOne.lastName" class="form-control" readonly />
+                <span asp-validation-for="Teammate1" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label">Teammate 2</label>
+                <input asp-for="TeammateTwo.lastName" class="form-control" readonly />
+                <span asp-validation-for="Teammate2" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label">Teammate 3</label>
+                <input asp-for="TeammateThree.lastName" class="form-control" readonly />
+                <span asp-validation-for="Teammate3" class="text-danger"></span>
+
+                <div class="form-group">
+                    <label class="control-label">Teammate 4</label>
+                    <input asp-for="TeammateFour.lastName" class="form-control" readonly />
+                    <span asp-validation-for="Teammate4" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index"><button class="btn btn-primary">Back to List</button></a>
+</div>
